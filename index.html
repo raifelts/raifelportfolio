@@ -1381,6 +1381,38 @@
    <script src="assets/js/validate.min.js"></script>
    <script src="assets/js/meanmenu.js"></script>
    <script src="assets/js/main.js"></script>
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Collect form data
+        const formData = {
+          firstName: document.getElementById('conName').value,
+          lastName: document.getElementById('conLName').value,
+          email: document.getElementById('conEmail').value,
+          phone: document.getElementById('conPhone').value,
+          service: document.getElementById('conService').value,
+          message: document.getElementById('conMessage').value
+        };
+        
+        // Replace with your Google Apps Script Web App URL
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbw9YzuAygkiGnyJe_Z9VT9xxRkYUti38DX3SNrXbWOS0beBcSgM3xEBK7RLn4a7l96q/exec';
+        
+        fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify(formData)
+        })
+        .then(response => {
+          alert('Form submitted successfully!');
+          document.getElementById('contact-form').reset();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Submission failed. Please try again.');
+        });
+      });
+      </script>
 </body>
 
 </html>
