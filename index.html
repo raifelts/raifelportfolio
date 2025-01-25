@@ -1296,18 +1296,18 @@
       <!-- CONTACT SECTION END -->
 
       <!-- BEGIN: Contact Form Success Modal Message -->
-      <div class="modal contact_modal" id="message_sent" tabindex="-1">
+      <div class="modal contact_modal rounded-3" id="message_sent" tabindex="-1">
          <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
+            <div class="modal-content rounded-4">
+               <div class="modal-header border-bottom-0">
                   <span class="modal-title"><strong>Message Sent Successfully</strong></span>
-                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
                   <p>Thank you for contacting us. We will get back to you shortly.<br>Have a great day!</p>
                </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+               <div class="modal-footer border-top-0">
+                  <button type="button" class="btn btn-secondary rounded-2" data-bs-dismiss="modal">Close</button>
                </div>
             </div>
          </div>
@@ -1315,18 +1315,18 @@
       <!-- END: Contact Form Success Modal Message -->
 
       <!-- BEGIN: Contact Form Fail Modal Message -->
-      <div class="modal contact_modal failed" id="message_fail" tabindex="-1">
+      <div class="modal contact_modal failed rounded-3" id="message_fail" tabindex="-1">
          <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
+            <div class="modal-content rounded-4">
+               <div class="modal-header border-bottom-0">
                   <span class="modal-title"><strong>Error</strong></span>
-                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <div class="modal-body">
                   <p>Oops!! Something went wrong, please try again.</p>
                </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+               <div class="modal-footer border-top-0">
+                  <button type="button" class="btn btn-secondary rounded-2" data-bs-dismiss="modal">Close</button>
                </div>
             </div>
          </div>
@@ -1381,7 +1381,7 @@
    <script src="assets/js/validate.min.js"></script>
    <script src="assets/js/meanmenu.js"></script>
    <script src="assets/js/main.js"></script>
-    <script>
+      <script>
       document.getElementById('contact-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -1404,13 +1404,14 @@
           body: JSON.stringify(formData)
         })
         .then(response => {
-          alert('Form submitted successfully!');
-          document.getElementById('contact-form').reset();
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Submission failed. Please try again.');
-        });
+    var successModal = new bootstrap.Modal(document.getElementById('message_sent'));
+    successModal.show();
+    document.getElementById('contact-form').reset();
+  })
+  .catch(error => {
+    var failModal = new bootstrap.Modal(document.getElementById('message_fail'));
+    failModal.show();
+  });
       });
       </script>
 </body>
